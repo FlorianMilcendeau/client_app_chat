@@ -1,0 +1,11 @@
+.returnChannel {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0;
+  outline: none;
+}
+
+.returnChannel > h2 {
+  color: var(--font-color);
+}

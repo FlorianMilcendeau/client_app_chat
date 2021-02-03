@@ -1,0 +1,52 @@
+.wrapperInputIcon {
+  position: relative;
+  display: flex;
+  min-width: 80%;
+}
+
+.label {
+  position: absolute;
+  top: 50%;
+  transform: translate(3rem, -50%);
+  background-color: var(--bg-color);
+  transition: all 0.1s linear;
+}
+
+.labelIcon {
+  position: absolute;
+  transform: translate(0.7rem, -50%);
+  top: 50%;
+}
+
+.inputIcon {
+  background-color: transparent;
+  padding: 0.5rem;
+  padding-left: 3rem;
+  border: 0.1rem solid #bdbdbd;
+  border-radius: 0.3rem;
+  color: var(--font-color);
+  width: 100%;
+  margin: 0.4rem 0;
+  height: 2rem;
+  outline: none;
+}
+
+.inputIcon:focus {
+  border-color: var(--blue);
+}
+
+.inputIcon:focus + .label,
+.inputIcon:not(:placeholder-shown) + .label {
+  transform: translate(1.5rem, -2.3rem) scale(0.9);
+  padding: 0 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .inputIcon {
+    width: 20rem;
+  }
+
+  .label {
+    background-color: var(--second-bg-color);
+  }
+}

@@ -1,0 +1,47 @@
+.wrapperSideBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--second-bg-color);
+  width: 60vw;
+  height: 100vh;
+  padding-left: 1rem;
+  transform: translateX(-150%);
+  -webkit-transform: translateX(-150%);
+  -moz-transform: translateX(-150%);
+  will-change: transform;
+  visibility: hidden;
+  box-shadow: 0 0 70px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.1s;
+  -webkit-transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.1s;
+  -moz-transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.1s;
+}
+
+.NavSideBar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Open {
+  will-change: transform;
+  transform: translateX(0%);
+  visibility: visible;
+  -webkit-transform: translateX(0%);
+  -moz-transform: translateX(0%);
+}
+
+@media screen and (min-width: 768px) {
+  .wrapperSideBar {
+    position: initial;
+    visibility: visible;
+    width: 25rem;
+    box-shadow: none;
+    transform: translateX(0);
+  }
+}

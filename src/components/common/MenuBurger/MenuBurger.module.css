@@ -1,0 +1,19 @@
+.MenuBurger {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  stroke: #303030;
+  transform: translateY(-50%);
+}
+
+.MenuBurger > line {
+  stroke-width: 0.35rem;
+}
+
+@media screen and (min-width: 768px) {
+  .MenuBurger {
+    display: none;
+  }
+}

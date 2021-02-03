@@ -1,0 +1,8 @@
+.channelGroup {
+  flex: 1;
+  padding: 0;
+}
+
+.linkGroup {
+  color: var(--font-color);
+}

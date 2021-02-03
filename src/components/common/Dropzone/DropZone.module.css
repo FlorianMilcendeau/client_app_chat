@@ -1,0 +1,29 @@
+.pictureProfile {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 0.3rem;
+}
+
+.drop {
+  outline: none;
+  cursor: pointer;
+  width: min-content;
+  transition: all 0.2s linear;
+}
+
+.drop:hover,
+.dragActive {
+  filter: contrast(50%);
+}
+
+.wrapperPictureDrop {
+  position: relative;
+}
+
+.downloadLogoDrop {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.8;
+}

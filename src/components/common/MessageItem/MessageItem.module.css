@@ -1,0 +1,40 @@
+.pictureAuthor {
+  width: 2rem;
+  border-radius: 0.2rem;
+  margin-right: 0.5rem;
+}
+
+.wrapperMessage {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+  transition: all 0.15s linear;
+}
+
+.messageAuthor {
+  font-weight: bold;
+  color: var(--font-secondary-color);
+}
+
+.messageCreatedAt {
+  font-size: 0.875rem;
+  color: var(--font-secondary-color);
+}
+
+.message {
+  color: var(--font-Color);
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapperMessage {
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .wrapperMessage:hover {
+    background-color: var(--hover);
+  }
+}

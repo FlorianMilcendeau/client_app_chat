@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  border: none;
+  height: 60vh;
+  color: var(--font-color);
+  background-color: var(bg-color);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    background-color: var(--second-bg-color);
+    box-shadow: 0 5px 35px rgba(0, 0, 0, 0.14);
+    border-radius: 0.75rem;
+    width: 25vw;
+    max-width: 23rem;
+    min-width: 18rem;
+    min-height: 33rem;
+    padding: 1rem 4rem;
+  }
+}

@@ -1,0 +1,18 @@
+.wrapperChat {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerChat {
+  position: relative;
+}
+
+.bodyChat {
+  display: flex;
+  height: calc(100vh - 64px - 1rem);
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 1rem;
+}

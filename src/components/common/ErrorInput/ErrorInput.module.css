@@ -1,0 +1,9 @@
+.errorInput::before {
+  display: inline;
+  content: '⚠ ';
+}
+
+.errorInput {
+  margin-top: 0;
+  color: var(--error);
+}

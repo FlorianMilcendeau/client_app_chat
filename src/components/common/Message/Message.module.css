@@ -1,0 +1,20 @@
+.message {
+  width: 100%;
+  height: 4rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.error {
+  color: #912d2b;
+  box-shadow: 0 0 0 1px #d77272 inset, 0 0 0 0 transparent;
+  background-color: var(--bg-color-error);
+}
+
+.success {
+  color: #1a531b;
+  box-shadow: 0 0 0 1px #a3c293 inset, 0 0 0 0 transparent;
+  background-color: var(--bg-color-success);
+}
