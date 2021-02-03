@@ -19,7 +19,7 @@ const Label = ({ name }) => {
   );
 };
 
-export default Label;
+export default React.memo(Label);
 
 Label.propTypes = {
   name: PropTypes.string.isRequired,

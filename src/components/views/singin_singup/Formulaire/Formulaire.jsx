@@ -7,6 +7,7 @@ import Loader from '../../../common/Loader/Loader';
 import ErrorInput from '../../../common/ErrorInput/ErrorInput';
 
 import styles from './Formulaire.module.css';
+import stylesButton from '../../../../css/Button.module.css';
 import styles2 from '../../../common/Loader/Loader.module.css';
 
 import iconPassword from '../../../../assets/icons/password.svg';
@@ -62,7 +63,9 @@ const Formulaire = ({ requestApi, valueInputSubmit, loader }) => {
         <ErrorInput message="Password required to be more than 8." />
       )}
       <button
-        className={`${styles.submitButton} ${!isDirty && styles.buttonDisable}`}
+        className={`${styles.submitButton} ${
+          !isDirty && stylesButton.buttonDisable
+        }`}
         type="submit"
         disabled={!isDirty}
       >

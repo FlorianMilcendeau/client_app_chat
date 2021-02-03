@@ -4,6 +4,8 @@ import Axios from 'axios';
 import { useForm } from 'react-hook-form';
 import submit from '../../../utils/confirm';
 
+import UserPropType from '../../../propTypes/UserPropTypes';
+
 import Message from '../../common/Message/Message';
 import DropZone from '../../common/Dropzone/DropZone';
 import InputIcon from '../../common/InputIcon/InputIcon';
@@ -163,22 +165,7 @@ const ProfilEdit = ({ user, updateUser }) => {
 
 export default ProfilEdit;
 
-ProfilEdit.defaultProps = {
-  user: PropTypes.shape({
-    picture: null,
-    bio: null,
-    phone: null,
-  }),
-};
-
 ProfilEdit.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    email: PropTypes.string,
-    picture: PropTypes.string,
-    bio: PropTypes.string,
-    phone: PropTypes.string,
-  }),
+  ...UserPropType,
   updateUser: PropTypes.func.isRequired,
 };

@@ -74,7 +74,7 @@ const Login = ({
 
           socket.connect();
 
-          Auth.logIn(() => history.push('dashboard/home'));
+          Auth.logIn(() => history.push('dashboard/Welcome'));
         }
         updateLoadingApp(false);
       } catch (error) {

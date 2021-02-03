@@ -5,7 +5,7 @@ import MessageItem from '../MessageItem/MessageItem';
 
 import styles from './ListMessage.module.css';
 
-const ListMessage = ({ messages }) => {
+const ListMessage = ({ userId, messages }) => {
   const messagesEndRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -20,7 +20,7 @@ const ListMessage = ({ messages }) => {
     <ul className={styles.listMessage}>
       {messages &&
         messages.map((message) => (
-          <MessageItem key={message.id} message={message} />
+          <MessageItem key={message.id} userId={userId} message={message} />
         ))}
       <div ref={messagesEndRef} />
     </ul>
@@ -35,4 +35,5 @@ ListMessage.defaultProps = {
 
 ListMessage.propTypes = {
   messages: PropTypes.arrayOf(PropTypes.object),
+  userId: PropTypes.number.isRequired,
 };

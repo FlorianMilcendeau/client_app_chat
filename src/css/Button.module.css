@@ -20,3 +20,8 @@
   background-color: transparent;
   outline: none;
 }
+
+.buttonDisable {
+  background-color: var(--disable) !important;
+  color: var(--dark);
+}

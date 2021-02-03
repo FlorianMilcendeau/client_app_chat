@@ -45,6 +45,7 @@ button {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  outline: none;
 }
 
 a {
@@ -54,6 +55,19 @@ a {
 
 body {
   margin: 0;
+}
+
+.react-confirm-alert-body {
+  width: 80vw;
+  max-width: 400px;
+}
+
+.react-confirm-alert-button-group > button:nth-child(2) {
+  background-color: var(--error);
+}
+
+.react-confirm-alert-button-group > button:nth-child(1) {
+  background-color: #238636;
 }
 
 @media screen and (min-width: 768px) {
