@@ -4,17 +4,26 @@ import PropTypes from 'prop-types';
 import styles from './LabelItem.module.css';
 import Label from '../Label/Label';
 
-const ChannelItem = ({ name }) => {
+const LabelItem = ({ name, picture }) => {
   return (
     <li className={styles.channelItem}>
-      <Label name={name} />
+      {picture ? (
+        <img className={styles.pictureProfile} src={picture} alt={name} />
+      ) : (
+        <Label name={name} />
+      )}
       {name}
     </li>
   );
 };
 
-export default ChannelItem;
+export default LabelItem;
 
-ChannelItem.propTypes = {
+LabelItem.defaultProps = {
+  picture: null,
+};
+
+LabelItem.propTypes = {
   name: PropTypes.string.isRequired,
+  picture: PropTypes.string,
 };

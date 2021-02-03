@@ -9,7 +9,11 @@ const ListMembers = ({ members }) => {
     <ul className={styles.channelGroup}>
       {members &&
         members.map((member) => (
-          <LabelItem key={member.id} name={member.name} />
+          <LabelItem
+            key={member.id}
+            picture={member.picture}
+            name={member.name}
+          />
         ))}
     </ul>
   );

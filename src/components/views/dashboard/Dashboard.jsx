@@ -22,6 +22,7 @@ const Dashboard = ({ socket, updateChannel, setMessages, updateMessage }) => {
       console.log(socket.id);
     });
 
+    // listen to incoming messages.
     socket.on('ADD_MESSAGE', (data) => {
       updateMessage(data);
     });

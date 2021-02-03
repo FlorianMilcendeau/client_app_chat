@@ -11,6 +11,7 @@ import iconArrow from '../../../assets/icons/arrow_down.svg';
 import iconLogout from '../../../assets/icons/login_out.svg';
 import iconPeople from '../../../assets/icons/people.svg';
 import iconAccount from '../../../assets/icons/account.svg';
+import Label from '../Label/Label';
 
 const Menu = ({ user, isOpen, socket, toggleMenu }) => {
   const history = useHistory();
@@ -23,8 +24,10 @@ const Menu = ({ user, isOpen, socket, toggleMenu }) => {
         type="button"
         onClick={() => toggleMenu(!isOpen)}
       >
-        {picture && (
+        {picture ? (
           <img className={styles.pictureProfileMenu} src={picture} alt={name} />
+        ) : (
+          <Label name={name} />
         )}
         {name}
         <img
