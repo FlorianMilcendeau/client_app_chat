@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useParams } from 'react-router-dom';
 
+import UserPropType from '../../../propTypes/UserPropTypes';
+
 import LabelBox from '../../common/LabelBox';
 
 import styles from './Profile.module.css';
@@ -50,13 +52,4 @@ Profile.defaultProps = {
     phone: null,
   }),
 };
-Profile.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    email: PropTypes.string,
-    picture: PropTypes.string,
-    bio: PropTypes.string,
-    phone: PropTypes.string,
-  }),
-};
+Profile.propTypes = UserPropType;

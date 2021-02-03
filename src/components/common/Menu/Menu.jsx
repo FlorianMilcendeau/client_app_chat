@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
 
+import UserPropType from '../../../propTypes/UserPropTypes';
 import { logOut } from '../../../API/authAPI';
 
 import styles from './Menu.module.css';
@@ -90,23 +91,8 @@ const Menu = ({ user, isOpen, socket, toggleMenu }) => {
 
 export default Menu;
 
-Menu.defaultProps = {
-  user: PropTypes.shape({
-    picture: null,
-    bio: null,
-    phone: null,
-  }),
-};
-
 Menu.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    email: PropTypes.string,
-    picture: PropTypes.string,
-    bio: PropTypes.string,
-    phone: PropTypes.string,
-  }),
+  ...UserPropType,
   isOpen: PropTypes.bool.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   socket: PropTypes.object.isRequired,
