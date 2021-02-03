@@ -76,7 +76,7 @@ form.profileInfo {
   justify-content: flex-start;
   margin: 1.5rem 0;
   color: var(--font-color);
-  width: 93%;
+  width: 80vw;
 }
 
 .inputText {
@@ -89,7 +89,7 @@ form.profileInfo {
   border-radius: 0.35rem;
   padding-left: 0.5rem;
   padding: 1rem;
-  width: 92%;
+  width: 90%;
   min-width: 15rem;
   overflow: auto;
   transition: all 0.15s linear;
@@ -97,6 +97,10 @@ form.profileInfo {
 
 .inputText:focus {
   border-color: var(--blue);
+}
+
+form.profileInfo > input[type='submit'] {
+  width: 80vw;
 }
 
 @media screen and (min-width: 768px) {
@@ -117,5 +121,9 @@ form.profileInfo {
 
   .inputText {
     width: 21rem;
+  }
+
+  form.profileInfo > input[type='submit'] {
+    width: 8rem;
   }
 }

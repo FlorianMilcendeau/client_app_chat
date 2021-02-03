@@ -25,11 +25,6 @@
   transition: all 0.2s linear;
 }
 
-.buttonDisable {
-  background-color: var(--disable);
-  color: var(--dark);
-}
-
 .infoContinue {
   text-align: center;
   font-size: 0.875rem;
