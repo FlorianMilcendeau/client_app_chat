@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import userPropTypes from '../../../propTypes/UserPropTypes';
 import iconSend from '../../../assets/icons/send.svg';
 
+import stylesButton from '../../../css/Button.module.css';
 import styles from './SendMessage.module.css';
-import userPropTypes from '../../../propTypes/UserPropTypes';
 
 const SendMessage = ({ user, socket, currentChannel }) => {
   const [value, setValue] = useState('');
+  const [isDisable, setisDisable] = useState(true);
 
   const handleInput = (e) => {
+    setisDisable(!(e.target.value.length > 0));
     setValue(e.target.value);
   };
 
-  // Send message
+  // Send message.
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -39,9 +42,12 @@ const SendMessage = ({ user, socket, currentChannel }) => {
         value={value}
       />
       <button
-        className={styles.sendButton}
+        className={`${styles.sendButton} ${
+          isDisable && stylesButton.buttonDisable
+        }`}
         type="button"
         onClick={(e) => handleSubmit(e)}
+        disabled={isDisable}
       >
         <img src={iconSend} alt="Send" />
       </button>

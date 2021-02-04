@@ -1,0 +1,62 @@
+.wrapperSetting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.ball {
+  display: block;
+  border-radius: 50%;
+  width: 0.35rem;
+  height: 0.35rem;
+  background-color: var(--font-secondary-color);
+  margin-top: 0.3rem;
+}
+
+.wrapperBodySetting {
+  position: absolute;
+  display: flex;
+  transform: scale(0);
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem 0rem;
+  width: 8rem;
+  left: -7.5rem;
+  top: 0rem;
+  border-radius: 0.3rem;
+  background-color: var(--second-bg-color);
+  transition: transform 0.2s ease-out;
+}
+
+.wrapperSetting:hover > .wrapperBodySetting {
+  transform: scale(1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.deleteButton {
+  width: 100%;
+  padding: 0.5rem 0;
+  border: none;
+  color: #990000;
+  transition: background-color 0.2s linear;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapperSetting {
+    opacity: 0;
+  }
+
+  .wrapperBodySetting {
+    left: -8rem;
+    top: 0rem;
+  }
+  .deleteButton:hover {
+    background-color: var(--bg-color-error);
+  }
+}

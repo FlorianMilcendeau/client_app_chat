@@ -6,13 +6,27 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 import styles from './MessageItem.module.css';
 import Label from '../Label/Label';
+import Setting from '../setting/Setting';
 
-const MessageItem = ({ message }) => {
+const MessageItem = ({ socket, channelId, userId, message }) => {
   /** convert elapsed time since publication date */
   dayjs.extend(relativeTime);
 
+  const isUser = (idUser, isMessage) => idUser !== isMessage;
+  const readOnly = isUser(userId, message.author.id);
+
+  // Send transmitter for delete this message.
+  const handleDelete = (id) => {
+    if (!readOnly) {
+      socket.emit('DELETE_MESSAGE', {
+        channelId,
+        messageId: id,
+      });
+    }
+  };
+
   return (
-    <li className={styles.wrapperMessage}>
+    <li className={`${styles.wrapperMessage} ${!readOnly && styles.isUser}`}>
       {message.author.picture !== null ? (
         <img
           className={styles.pictureAuthor}
@@ -22,7 +36,7 @@ const MessageItem = ({ message }) => {
       ) : (
         <Label name={message.author.name} />
       )}
-      <div>
+      <div className={styles.messageContent}>
         <span className={styles.messageAuthor}>
           {`${message.author.name} `}
         </span>
@@ -31,6 +45,7 @@ const MessageItem = ({ message }) => {
         </time>
         <p className={styles.message}>{message.content}</p>
       </div>
+      {!readOnly && <Setting handleDelete={() => handleDelete(message.id)} />}
     </li>
   );
 };
@@ -43,11 +58,17 @@ MessageItem.defaultProps = {
 
 MessageItem.propTypes = {
   message: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     author: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       name: PropTypes.string,
       picture: PropTypes.string,
     }),
     content: PropTypes.string,
     created_at: PropTypes.string,
   }),
+  // eslint-disable-next-line react/forbid-prop-types
+  socket: PropTypes.object.isRequired,
+  userId: PropTypes.number.isRequired,
+  channelId: PropTypes.number.isRequired,
 };
