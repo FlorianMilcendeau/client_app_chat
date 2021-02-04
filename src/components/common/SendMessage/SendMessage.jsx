@@ -1,57 +1,93 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import { encode } from 'he';
+
 import userPropTypes from '../../../propTypes/UserPropTypes';
 import iconSend from '../../../assets/icons/send.svg';
 
-import stylesButton from '../../../css/Button.module.css';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+// import stylesButton from '../../../css/Button.module.css';
 import styles from './SendMessage.module.css';
 
 const SendMessage = ({ user, socket, currentChannel }) => {
-  const [value, setValue] = useState('');
-  const [isDisable, setisDisable] = useState(true);
+  const [value, setValue] = useState(EditorState.createEmpty());
 
   const handleInput = (e) => {
-    setisDisable(!(e.target.value.length > 0));
-    setValue(e.target.value);
+    setValue(e);
   };
 
   // Send message.
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Encode the text sent
+    const content = encode(
+      draftToHtml(convertToRaw(value.getCurrentContent()))
+    );
+
     socket.emit('ADD_MESSAGE', {
       channelId: currentChannel.id,
       content: {
         author: { id: user.id, name: user.name },
-        content: value,
+        content,
         created_at: new Date(),
       },
     });
 
-    setValue('');
+    setValue(EditorState.createEmpty());
   };
 
   return (
-    <form className={styles.sendMessage}>
-      <textarea
-        className={styles.textArea}
-        placeholder="Type a message here"
-        spellCheck
-        onChange={(e) => handleInput(e)}
-        value={value}
+    <div className={styles.wrapperEditor}>
+      <Editor
+        editorState={value}
+        toolbar={{
+          options: [
+            'inline',
+            'blockType',
+            'list',
+            'textAlign',
+            'link',
+            'emoji',
+            'remove',
+            'history',
+          ],
+          inline: { options: [] },
+          blockType: {
+            inDropdown: true,
+            options: [
+              'Normal',
+              'H2',
+              'H3',
+              'H4',
+              'H5',
+              'H6',
+              'Blockquote',
+              'Code',
+            ],
+            className: undefined,
+            component: undefined,
+            dropdownClassName: undefined,
+          },
+        }}
+        toolbarOnFocus
+        onEditorStateChange={handleInput}
+        wrapperClassName={styles.wrapperEditor}
+        editorClassName={styles.textArea}
+        toolbarClassName={styles.toolsBar}
       />
       <button
-        className={`${styles.sendButton} ${
-          isDisable && stylesButton.buttonDisable
-        }`}
+        className={styles.sendButton}
         type="button"
         onClick={(e) => handleSubmit(e)}
-        disabled={isDisable}
       >
         <img src={iconSend} alt="Send" />
       </button>
-    </form>
+    </div>
   );
 };
 
