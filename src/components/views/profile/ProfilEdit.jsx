@@ -23,7 +23,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const ProfilEdit = ({ user, updateUser }) => {
   const { register, handleSubmit, errors } = useForm();
-  const [isSuccess, setisSuccess] = useState(false);
+  const [isSuccess, setisSuccess] = useState();
   const [picture, setpicture] = useState({});
 
   const regExpEmail = new RegExp(/^([\w-]+)@([A-Za-z]+)\.([A-Za-z]{2,3})$/);
@@ -50,7 +50,7 @@ const ProfilEdit = ({ user, updateUser }) => {
       .then((res) => {
         const { info, user: currentUser } = res.data;
 
-        setisSuccess(info.success);
+        setisSuccess(info);
 
         // update state user in redux.
         if (info.success) {
@@ -59,6 +59,7 @@ const ProfilEdit = ({ user, updateUser }) => {
       })
       .catch((err) => {
         if (err) {
+          setisSuccess(err.response.data.info.success);
           throw err;
         }
       });
@@ -82,6 +83,12 @@ const ProfilEdit = ({ user, updateUser }) => {
           <Message
             success={isSuccess}
             message="Your personnal information has been changed"
+          />
+        )}
+        {isSuccess === false && (
+          <Message
+            success={isSuccess}
+            message="No fields have been completed"
           />
         )}
         <h2>Change Info</h2>
