@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { decode } from 'he';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
@@ -43,7 +44,11 @@ const MessageItem = ({ socket, channelId, userId, message }) => {
         <time className={styles.messageCreatedAt}>
           {dayjs(message.created_at).fromNow()}
         </time>
-        <p className={styles.message}>{message.content}</p>
+        <p
+          className={styles.message}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: decode(message.content) }}
+        />
       </div>
       {!readOnly && <Setting handleDelete={() => handleDelete(message.id)} />}
     </li>
