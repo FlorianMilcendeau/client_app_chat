@@ -10,7 +10,6 @@ import userPropTypes from '../../../propTypes/UserPropTypes';
 import iconSend from '../../../assets/icons/send.svg';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-// import stylesButton from '../../../css/Button.module.css';
 import styles from './SendMessage.module.css';
 
 const SendMessage = ({ user, socket, currentChannel }) => {
@@ -69,9 +68,14 @@ const SendMessage = ({ user, socket, currentChannel }) => {
               'Blockquote',
               'Code',
             ],
-            className: undefined,
-            component: undefined,
-            dropdownClassName: undefined,
+            className: styles.toolsBlockType,
+            dropdownClassName: styles.popUpBlockType,
+          },
+          emoji: {
+            popupClassName: styles.popUpEmojie,
+          },
+          link: {
+            popupClassName: styles.popUpEmojie,
           },
         }}
         toolbarOnFocus

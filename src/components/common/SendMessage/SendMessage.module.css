@@ -47,6 +47,22 @@
   bottom: 100%;
 }
 
+.toolsBlockType {
+  position: relative;
+}
+
+.popUpBlockType {
+  position: absolute;
+  bottom: 30px;
+}
+
+.popUpEmojie {
+  top: auto;
+  left: auto;
+  bottom: 32px;
+  right: 0;
+}
+
 .wrapperEditor {
   display: flex;
   flex-direction: column;
