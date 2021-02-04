@@ -1,4 +1,5 @@
 import {
+  DELETE_MESSAGE,
   SET_MESSAGE,
   UPDATE_CHANNEL,
   UPDATE_CURRENT_CHANNEL,
@@ -22,5 +23,10 @@ export const setMessage = (messages) => ({
 
 export const updateMessage = (message) => ({
   type: UPDATE_MESSAGE,
+  payload: message,
+});
+
+export const deleteMessage = (message) => ({
+  type: DELETE_MESSAGE,
   payload: message,
 });
