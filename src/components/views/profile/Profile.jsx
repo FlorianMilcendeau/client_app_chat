@@ -31,7 +31,7 @@ const Profile = ({ user }) => {
         <img
           className={styles.cellProfileInfo}
           src={picture ? picture : 'https://via.placeholder.com/150'}
-          alt="none"
+          alt="default profile"
         />
       </div>
       <LabelBox name="Name" value={name} msgError="No name defined" />

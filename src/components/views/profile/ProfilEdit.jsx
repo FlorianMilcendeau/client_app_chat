@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Axios from 'axios';
 import { useForm } from 'react-hook-form';
 import submit from '../../../utils/confirm';
 
@@ -20,6 +19,7 @@ import iconArticle from '../../../assets/icons/article.svg';
 import styles from './Profile.module.css';
 import styles3 from '../../../css/Button.module.css';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { userUpdate } from '../../../API/user';
 
 const ProfilEdit = ({ user, updateUser }) => {
   const { register, handleSubmit, errors } = useForm();
@@ -29,40 +29,29 @@ const ProfilEdit = ({ user, updateUser }) => {
   const regExpEmail = new RegExp(/^([\w-]+)@([A-Za-z]+)\.([A-Za-z]{2,3})$/);
 
   // new info user sent.
-  const postForm = (form) => {
+  const postForm = async (form) => {
     const client = JSON.stringify(form);
     const dataForm = new FormData();
 
     dataForm.append('info', client);
     dataForm.append('picture', picture);
 
-    const token = localStorage.getItem('token');
+    try {
+      const response = await userUpdate(user.id, dataForm);
+      const { info, user: currentUser } = response;
 
-    Axios.put(
-      `${process.env.REACT_APP_SERVER_URL}/api/user/${user.id}`,
-      dataForm,
-      {
-        headers: {
-          Authorization: token,
-        },
+      setisSuccess(info);
+
+      // update state user in redux.
+      if (info.success) {
+        updateUser(currentUser);
       }
-    )
-      .then((res) => {
-        const { info, user: currentUser } = res.data;
-
-        setisSuccess(info);
-
-        // update state user in redux.
-        if (info.success) {
-          updateUser(currentUser);
-        }
-      })
-      .catch((err) => {
-        if (err) {
-          setisSuccess(err.response.data.info.success);
-          throw err;
-        }
-      });
+    } catch (error) {
+      if (error) {
+        setisSuccess(error.response.data.info.success);
+        throw error;
+      }
+    }
   };
 
   return (
