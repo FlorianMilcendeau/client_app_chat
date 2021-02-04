@@ -5,7 +5,13 @@ import MessageItem from '../MessageItem/MessageItem';
 
 import styles from './ListMessage.module.css';
 
-const ListMessage = ({ messages }) => {
+const ListMessage = ({
+  socket,
+  channelId,
+  userId,
+  messages,
+  deleteMessage,
+}) => {
   const messagesEndRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -16,11 +22,23 @@ const ListMessage = ({ messages }) => {
     });
   }, [messages]);
 
+  useLayoutEffect(() => {
+    socket.on('UPDATE_MESSAGE', (messageId) => {
+      deleteMessage(messageId);
+    });
+  }, []);
+
   return (
     <ul className={styles.listMessage}>
       {messages &&
         messages.map((message) => (
-          <MessageItem key={message.id} message={message} />
+          <MessageItem
+            key={message.id}
+            channelId={channelId}
+            userId={userId}
+            message={message}
+            socket={socket}
+          />
         ))}
       <div ref={messagesEndRef} />
     </ul>
@@ -34,5 +52,10 @@ ListMessage.defaultProps = {
 };
 
 ListMessage.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  socket: PropTypes.object.isRequired,
   messages: PropTypes.arrayOf(PropTypes.object),
+  userId: PropTypes.number.isRequired,
+  channelId: PropTypes.number.isRequired,
+  deleteMessage: PropTypes.func.isRequired,
 };
