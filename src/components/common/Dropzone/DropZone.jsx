@@ -27,16 +27,23 @@ const DropZone = ({ setpicture }) => {
     fileRejections,
   } = useDropzone({
     maxFiles: 1,
-    accept: 'image/*',
+    accept: 'image/png, image/jpeg, image/jpg',
     onDrop,
+    maxSize: 5000000,
   });
 
-  const filesError = fileRejections.map((file, error) => {
+  const filesError = fileRejections.map((result) => {
+    const { errors, file } = result;
+    console.log(result);
     return (
       <ul key={file.path}>
-        {error.map((e) => (
-          <li key={e.code}>{e.message}</li>
-        ))}
+        {errors.map((e) =>
+          e.code === 'file-too-large' ? (
+            <li key={e.code}>File is larger than 5MB</li>
+          ) : (
+            <li key={e.code}>{e.message}</li>
+          )
+        )}
       </ul>
     );
   });

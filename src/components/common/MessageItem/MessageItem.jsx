@@ -20,6 +20,7 @@ const MessageItem = ({ socket, channelId, userId, message }) => {
   const handleDelete = (id) => {
     if (!readOnly) {
       socket.emit('DELETE_MESSAGE', {
+        authorId: message.author.id,
         channelId,
         messageId: id,
       });
