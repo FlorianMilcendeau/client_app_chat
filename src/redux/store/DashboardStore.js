@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Dashboard from '../../components/views/dashboard/Dashboard';
+import Dashboard from '../../components/routes/dashboard/Dashboard';
 
 import {
   setMessage,
