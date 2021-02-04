@@ -34,7 +34,7 @@ const DropZone = ({ setpicture }) => {
 
   const filesError = fileRejections.map((result) => {
     const { errors, file } = result;
-    console.log(result);
+
     return (
       <ul key={file.path}>
         {errors.map((e) =>
