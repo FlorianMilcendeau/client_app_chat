@@ -40,7 +40,7 @@ const ProfilEdit = ({ user, updateUser }) => {
       const response = await userUpdate(user.id, dataForm);
       const { info, user: currentUser } = response;
 
-      setisSuccess(info);
+      setisSuccess(info.success);
 
       // update state user in redux.
       if (info.success) {
@@ -48,7 +48,7 @@ const ProfilEdit = ({ user, updateUser }) => {
       }
     } catch (error) {
       if (error) {
-        setisSuccess(error.response.data.info.success);
+        setisSuccess(error.response.data.success);
         throw error;
       }
     }
