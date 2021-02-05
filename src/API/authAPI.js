@@ -15,7 +15,7 @@ export const logOut = async (history) => {
       localStorage.removeItem('token');
       localStorage.removeItem('expiresIn');
 
-      Auth.logOut(() => history.push('login'));
+      Auth.logOut(() => history.push('/login'));
     }
   } catch (err) {
     throw new Error(err);
