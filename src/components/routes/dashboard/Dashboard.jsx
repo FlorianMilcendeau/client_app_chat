@@ -18,9 +18,7 @@ const Dashboard = ({ socket, updateChannel, setMessages, updateMessage }) => {
   }, []);
 
   useEffect(() => {
-    socket.on('connect', () => {
-      console.log(socket.id);
-    });
+    socket.on('connect', () => {});
 
     // listen to incoming messages.
     socket.on('ADD_MESSAGE', (data) => {
