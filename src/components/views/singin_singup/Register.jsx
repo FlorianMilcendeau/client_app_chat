@@ -11,7 +11,7 @@ import styles from '../../../css/container-form.module.css';
 import styles2 from './Formulaire/Formulaire.module.css';
 import Auth from '../../../Authentication/Authentication';
 
-const Register = ({ updateUser, loadingApp, updateLoadingApp }) => {
+const Register = ({ updateUser, loadingApp, updateLoadingApp, setToken }) => {
   const history = useHistory();
   const [infoRegister, setinfoRegister] = useState({
     success: false,
@@ -35,6 +35,7 @@ const Register = ({ updateUser, loadingApp, updateLoadingApp }) => {
         setinfoRegister(info);
         updateLoadingApp(false);
 
+        setToken(token);
         Auth.logIn(() => history.push('dashboard/Welcome'));
       }
     } catch (error) {
@@ -81,5 +82,6 @@ export default Register;
 Register.propTypes = {
   updateUser: PropTypes.func.isRequired,
   loadingApp: PropTypes.bool.isRequired,
+  setToken: PropTypes.func.isRequired,
   updateLoadingApp: PropTypes.func.isRequired,
 };
