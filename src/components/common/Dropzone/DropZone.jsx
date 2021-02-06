@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
@@ -11,6 +12,8 @@ import styles from './DropZone.module.css';
 const DropZone = ({ setpicture }) => {
   const [files, setFiles] = useState([]);
   const onDrop = useCallback((acceptedFile) => {
+    setpicture(acceptedFile[0]); // Set picture to sent
+
     setFiles(
       acceptedFile.map((file) =>
         Object.assign(file, {
@@ -66,7 +69,6 @@ const DropZone = ({ setpicture }) => {
       <input
         {...getInputProps({
           name: 'picture',
-          onChange: (e) => setpicture(e.target.files[0]),
         })}
       />
       <div className={styles.wrapperPictureDrop}>
