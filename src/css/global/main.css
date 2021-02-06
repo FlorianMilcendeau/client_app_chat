@@ -15,6 +15,7 @@
   --hover: #e3e3e3;
 }
 
+/*
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #252329;
@@ -28,7 +29,7 @@
     --hover: #404040;
   }
 }
-
+*/
 #root {
   display: flex;
   justify-content: center;

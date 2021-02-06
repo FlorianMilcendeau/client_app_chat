@@ -1,8 +1,6 @@
 import Axios from 'axios';
 
 const { REACT_APP_SERVER_URL } = process.env;
-
-const token = localStorage.getItem('token');
 /**
  *
  * @param {number} id - 'id' is the id of user.
@@ -14,7 +12,7 @@ export const userUpdate = async (id, data) => {
     data,
     {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
       },
     }
   );
