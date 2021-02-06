@@ -22,7 +22,7 @@ const Root = () => {
         <Route path="/login" component={LoginStore} />
         <ProtectedRoute path="/dashboard" component={DashboardStore} />
         <ProfileRoute path="/profile" />
-        <Redirect to="/login" component={LoginStore} />
+        <Redirect path="/*" to="/login" component={LoginStore} />
       </Switch>
     </Router>
   );
