@@ -34,13 +34,12 @@ const Login = ({
 
       const { info, user, jwtToken } = response;
 
-      const { token, expiresIn } = jwtToken;
+      const { token } = jwtToken;
 
       /** Redirection */
       if (info.success) {
         /** Set jwt token into local storage */
         localStorage.setItem('token', token);
-        localStorage.setItem('expiresIn', expiresIn);
 
         // update state user redux
         updateUser(user);
