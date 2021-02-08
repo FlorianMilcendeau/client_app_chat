@@ -22,18 +22,21 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { userUpdate } from '../../../API/user';
 
 const ProfilEdit = ({ user, updateUser }) => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, watch } = useForm();
   const [isSuccess, setisSuccess] = useState();
   const [picture, setpicture] = useState({});
+  const newPassword = watch('password');
 
-  const regExpEmail = new RegExp(/^([\w-]+)@([A-Za-z]+)\.([A-Za-z]{2,3})$/);
+  const regExpEmail = new RegExp(
+    /^([\w-]+)\.?([\w-]+)@([A-Za-z]+)\.([A-Za-z]{2,})$/
+  );
 
   // new info user sent.
   const postForm = async (form) => {
-    const client = JSON.stringify(form);
+    const { confirmPassword, ...client } = JSON.parse(JSON.stringify(form));
     const dataForm = new FormData();
 
-    dataForm.append('info', client);
+    dataForm.append('info', JSON.stringify(client));
     dataForm.append('picture', picture);
 
     try {
@@ -148,6 +151,26 @@ const ProfilEdit = ({ user, updateUser }) => {
         />
         {errors.password?.type === 'minLength' && (
           <ErrorInput message={errors.password.message} />
+        )}
+        <InputIcon
+          icon={iconPassword}
+          label="Confirm password"
+          name="confirmPassword"
+          type="password"
+          isDisabled={!newPassword}
+          register={register({
+            validate: (value) =>
+              !newPassword || newPassword === value
+                ? true
+                : 'New password and confirm new password does not match',
+
+            minLength: {
+              value: 8,
+            },
+          })}
+        />
+        {errors.confirmPassword?.type === 'validate' && (
+          <ErrorInput message={errors.confirmPassword.message} />
         )}
         <input
           className={`${styles3.button} ${styles3.primary}`}
