@@ -91,6 +91,8 @@ const Login = ({
     socket.on('disconnect', (reason) => {
       if (reason === 'transport close') {
         socket.connect(process.env.REACT_APP_SERVER_URL);
+      } else if (reason === 'io server disconnect') {
+        socket.disconnect();
       }
     });
   }, []);

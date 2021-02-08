@@ -22,7 +22,9 @@ const Formulaire = ({ requestApi, valueInputSubmit, loader }) => {
   });
   const { isDirty } = formState;
 
-  const regExpEmail = new RegExp(/^([\w-]+)@([A-Za-z]+)\.([A-Za-z]{2,})$/);
+  const regExpEmail = new RegExp(
+    /^([\w-]+)\.?([\w-]+)@([A-Za-z]+)\.([A-Za-z]{2,})$/
+  );
 
   const onSubmit = (data) => {
     requestApi(JSON.stringify(data));
