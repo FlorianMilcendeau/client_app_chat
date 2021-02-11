@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import ListMessage from '../../components/common/ListMessage/ListMessage';
-import { deleteMessage } from '../actions/channelAction';
+import { deleteMessage, updateUnshiftMessage } from '../actions/channelAction';
 
 import {
   channelIdSelector,
@@ -19,6 +19,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   deleteMessage: (id) => dispatch(deleteMessage(id)),
+  updateUnshiftMessage: (message) => dispatch(updateUnshiftMessage(message)),
 });
 
 export const ListMessagesStore = connect(

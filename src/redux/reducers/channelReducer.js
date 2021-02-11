@@ -10,7 +10,8 @@ const initChannel = {
 };
 
 export const SET_MESSAGE = 'SET_MESSAGE';
-export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
+export const UPDATE_PUSH_MESSAGE = 'UPDATE_MESSAGE';
+export const UPDATE_UNSHIFT_MESSAGE = 'UPDATE_UNSHIFT_MESSAGE';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const UPDATE_CHANNEL = 'UPDATE_CHANNEL';
 export const UPDATE_CURRENT_CHANNEL = 'UPDATE_CURRENT_CHANNEL';
@@ -35,13 +36,22 @@ export const channelReducer = (state = initChannel, action) => {
         ...state,
         currentChannel: { ...state.currentChannel, messages: action.payload },
       };
-    case UPDATE_MESSAGE:
+    case UPDATE_PUSH_MESSAGE:
       // I concat messages
       return {
         ...state,
         currentChannel: {
           ...state.currentChannel,
           messages: [...state.currentChannel.messages, action.payload],
+        },
+      };
+    case UPDATE_UNSHIFT_MESSAGE:
+      // I concat messages
+      return {
+        ...state,
+        currentChannel: {
+          ...state.currentChannel,
+          messages: [...action.payload, ...state.currentChannel.messages],
         },
       };
     case DELETE_MESSAGE:

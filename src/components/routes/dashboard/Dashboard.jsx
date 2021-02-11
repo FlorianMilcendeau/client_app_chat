@@ -5,13 +5,18 @@ import { Route } from 'react-router-dom';
 import { HomeStore } from '../../../redux/store/HomeStore';
 
 import styles from './Dashboard.module.css';
-import { fetchAllChannel, fetchAllMessage } from '../../../API/channel';
+import { fetchAllChannel, fetchMessages } from '../../../API/channel';
 
-const Dashboard = ({ socket, updateChannel, setMessages, updateMessage }) => {
+const Dashboard = ({
+  socket,
+  updateChannel,
+  setMessages,
+  updatePushMessage,
+}) => {
   useEffect(async () => {
     // fetch all channels and initialize fetch messages to Welcome channel.
     const channel = await fetchAllChannel();
-    const messages = await fetchAllMessage(1);
+    const messages = await fetchMessages(1);
 
     updateChannel(channel);
     setMessages(messages);
@@ -22,7 +27,7 @@ const Dashboard = ({ socket, updateChannel, setMessages, updateMessage }) => {
 
     // listen to incoming messages.
     socket.on('ADD_MESSAGE', (data) => {
-      updateMessage(data);
+      updatePushMessage(data);
     });
   }, []);
 
@@ -42,7 +47,7 @@ export default Dashboard;
 Dashboard.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   socket: PropTypes.object.isRequired,
-  updateMessage: PropTypes.func.isRequired,
+  updatePushMessage: PropTypes.func.isRequired,
   updateChannel: PropTypes.func.isRequired,
   setMessages: PropTypes.func.isRequired,
 };

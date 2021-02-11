@@ -9,6 +9,7 @@
 }
 
 .bodyChat {
+  position: relative;
   display: flex;
   height: calc(100vh - 64px);
   flex-direction: column;

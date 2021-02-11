@@ -4,8 +4,8 @@
   border: 0.3rem solid #eee;
   border-radius: 50%;
   border-top: 0.3rem solid var(--blue);
-  -webkit-animation: spin 1.5s linear infinite;
-  animation: spin 1.5s linear infinite;
+  -webkit-animation: spin 1.2s linear infinite;
+  animation: spin 1.2s linear infinite;
 }
 
 .loaderXS {
