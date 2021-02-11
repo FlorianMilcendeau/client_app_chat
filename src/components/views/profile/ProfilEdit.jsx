@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import submit from '../../../utils/confirm';
@@ -23,9 +23,11 @@ import { userUpdate } from '../../../API/user';
 
 const ProfilEdit = ({ user, updateUser }) => {
   const { register, handleSubmit, errors, watch } = useForm();
-  const [isSuccess, setisSuccess] = useState();
-  const [picture, setpicture] = useState({});
+  const [isTooLength, setIsTooLength] = useState(0);
+  const [isSuccess, setIsSuccess] = useState();
+  const [picture, setPicture] = useState({});
   const newPassword = watch('password');
+  const bio = watch('bio', '');
 
   const regExpEmail = new RegExp(
     /^([\w-]+)\.?([\w-]+)@([A-Za-z]+)\.([A-Za-z]{2,})$/
@@ -43,7 +45,7 @@ const ProfilEdit = ({ user, updateUser }) => {
       const response = await userUpdate(user.id, dataForm);
       const { info, user: currentUser } = response;
 
-      setisSuccess(info.success);
+      setIsSuccess(info.success);
 
       // update state user in redux.
       if (info.success) {
@@ -51,11 +53,15 @@ const ProfilEdit = ({ user, updateUser }) => {
       }
     } catch (error) {
       if (error) {
-        setisSuccess(error.response.data.success);
+        setIsSuccess(error.response.data.success);
         throw error;
       }
     }
   };
+
+  useEffect(() => {
+    setIsTooLength(bio.length);
+  }, [bio]);
 
   return (
     <section className={styles.wrapperProfile}>
@@ -85,7 +91,7 @@ const ProfilEdit = ({ user, updateUser }) => {
         )}
         <h2>Change Info</h2>
         <p>Changed will be reflected to each services</p>
-        <DropZone setpicture={(pic) => setpicture(pic)} />
+        <DropZone setpicture={(pic) => setPicture(pic)} />
         <InputIcon
           icon={iconArticle}
           label="name"
@@ -110,13 +116,14 @@ const ProfilEdit = ({ user, updateUser }) => {
             ref={register({
               maxLength: {
                 value: 300,
-                message: 'Password required to be less than 300.',
+                message: 'Bio required to be less than 300 characteres.',
               },
             })}
           />
+          <span className={styles.maxChar}>{`${isTooLength}/300`}</span>
         </label>
-        {errors.password?.type === 'minLength' && (
-          <ErrorInput message={errors.password.message} />
+        {errors.bio?.type === 'maxLength' && (
+          <ErrorInput message={errors.bio.message} />
         )}
         <InputIcon
           icon={iconPhone}
