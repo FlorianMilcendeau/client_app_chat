@@ -13,7 +13,7 @@ export const fetchAllChannel = async () => {
 /**
  *
  * @param {number} id - id is the id of the channel.
- * @param {number} page - page is the number page of the channel.
+ * @param {number} page - page is the number page of messages of the channel.
  */
 export const fetchMessages = async (id, page = 0) => {
   const response = await Axios.get(
