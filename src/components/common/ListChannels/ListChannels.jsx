@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import LabelItem from '../LabelItem/LabelItem';
-import { fetchAllMessage } from '../../../API/channel';
+import { fetchMessages } from '../../../API/channel';
 
 import styles from './ListChannels.module.css';
 
@@ -18,7 +18,7 @@ const ListChannels = ({
     const { id } = channel;
 
     if (currentChannel.id !== id) {
-      const messages = await fetchAllMessage(id);
+      const messages = await fetchMessages(id);
 
       setMessage(messages);
     }
