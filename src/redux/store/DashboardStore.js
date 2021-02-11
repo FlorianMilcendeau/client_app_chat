@@ -4,7 +4,7 @@ import Dashboard from '../../components/routes/dashboard/Dashboard';
 import {
   setMessage,
   updateChannels,
-  updateMessage,
+  updatePushMessage,
 } from '../actions/channelAction';
 import { socketSelector } from '../selectors/socketSelector';
 
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   updateChannel: (info) => dispatch(updateChannels(info)),
-  updateMessage: (message) => dispatch(updateMessage(message)),
+  updatePushMessage: (message) => dispatch(updatePushMessage(message)),
   setMessages: (messages) => dispatch(setMessage(messages)),
 });
 
