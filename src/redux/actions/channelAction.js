@@ -3,7 +3,8 @@ import {
   SET_MESSAGE,
   UPDATE_CHANNEL,
   UPDATE_CURRENT_CHANNEL,
-  UPDATE_MESSAGE,
+  UPDATE_PUSH_MESSAGE,
+  UPDATE_UNSHIFT_MESSAGE,
 } from '../reducers/channelReducer';
 
 export const updateChannels = (channels) => ({
@@ -21,8 +22,13 @@ export const setMessage = (messages) => ({
   payload: messages,
 });
 
-export const updateMessage = (message) => ({
-  type: UPDATE_MESSAGE,
+export const updatePushMessage = (message) => ({
+  type: UPDATE_PUSH_MESSAGE,
+  payload: message,
+});
+
+export const updateUnshiftMessage = (message) => ({
+  type: UPDATE_UNSHIFT_MESSAGE,
   payload: message,
 });
 

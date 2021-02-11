@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 
 import Home from '../../components/views/Home/Home';
 
-import { updateMessage } from '../actions/channelAction';
 import { toggleMenu, toggleSideBar } from '../actions/uiAction';
 
 import { currentChannel } from '../selectors/channelSelector';
@@ -14,7 +13,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateMessage: (message) => dispatch(updateMessage(message)),
   toggleMenu: (bool) => dispatch(toggleMenu(bool)),
   toggleSideBar: (bool) => dispatch(toggleSideBar(bool)),
 });
