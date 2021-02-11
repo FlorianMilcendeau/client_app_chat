@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useParams } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ import styles2 from '../../../css/Button.module.css';
 
 const Profile = ({ user }) => {
   const { name, email, phone, bio, picture } = user;
+  const [isCompleted, setIsCompleted] = useState(true);
   const { name: pseudo } = useParams();
 
   return (
@@ -30,7 +31,10 @@ const Profile = ({ user }) => {
         <div className={styles.cellProfileTitle}>Picture</div>
         <img
           className={styles.cellProfileInfo}
-          src={picture ? picture : 'https://via.placeholder.com/150'}
+          src={
+            picture && isCompleted ? picture : 'https://via.placeholder.com/150'
+          }
+          onError={() => setIsCompleted(false)}
           alt="default profile"
         />
       </div>
