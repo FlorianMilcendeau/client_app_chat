@@ -13,10 +13,11 @@ export const fetchAllChannel = async () => {
 /**
  *
  * @param {number} id - id is the id of the channel.
+ * @param {number} page - page is the number page of the channel.
  */
-export const fetchAllMessage = async (id) => {
+export const fetchMessages = async (id, page = 0) => {
   const response = await Axios.get(
-    `${REACT_APP_SERVER_URL}/api/channels/${id}/messages`,
+    `${REACT_APP_SERVER_URL}/api/channels/${id}/messages?page=${page}`,
     { headers: { authorization: localStorage.getItem('token') } }
   );
 
