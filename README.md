@@ -1,6 +1,7 @@
 # EZchat
 
 <div style="text-align:center"><img src="https://zupimages.net/up/21/06/dfz8.png" /></div>
+Ezchat is a website of the group messaging, to connect developers around the world.
 
 ## Démo
 
