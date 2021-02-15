@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
 
 import UserPropType from '../../../propTypes/UserPropTypes';
 import { logOut } from '../../../API/authAPI';
+
+import LoadImg from '../LoadImg/LoadImg';
 
 import styles from './Menu.module.css';
 import styles2 from '../../../css/Button.module.css';
@@ -12,11 +14,9 @@ import iconArrow from '../../../assets/icons/arrow_down.svg';
 import iconLogout from '../../../assets/icons/login_out.svg';
 import iconPeople from '../../../assets/icons/people.svg';
 import iconAccount from '../../../assets/icons/account.svg';
-import Label from '../Label/Label';
 
 const Menu = ({ user, isOpen, socket, toggleMenu }) => {
   const history = useHistory();
-  const [isCompleted, setIsCompleted] = useState(true);
 
   const { name, picture } = user;
   return (
@@ -26,16 +26,11 @@ const Menu = ({ user, isOpen, socket, toggleMenu }) => {
         type="button"
         onClick={() => toggleMenu(!isOpen)}
       >
-        {picture && isCompleted ? (
-          <img
-            className={styles.pictureProfileMenu}
-            onError={() => setIsCompleted(false)}
-            src={picture}
-            alt={name}
-          />
-        ) : (
-          <Label name={name} />
-        )}
+        <LoadImg
+          style={styles.pictureProfileMenu}
+          picture={picture}
+          name={name}
+        />
         {name}
         <img
           src={iconArrow}
