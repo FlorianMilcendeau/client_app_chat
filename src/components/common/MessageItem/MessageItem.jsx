@@ -6,8 +6,8 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 import styles from './MessageItem.module.css';
-import Label from '../Label/Label';
 import Setting from '../setting/Setting';
+import LoadImg from '../LoadImg/LoadImg';
 
 const MessageItem = ({ socket, channelId, userId, message }) => {
   /** convert elapsed time since publication date */
@@ -29,15 +29,11 @@ const MessageItem = ({ socket, channelId, userId, message }) => {
 
   return (
     <li className={`${styles.wrapperMessage} ${!readOnly && styles.isUser}`}>
-      {message.author.picture !== null ? (
-        <img
-          className={styles.pictureAuthor}
-          src={message.author.picture}
-          alt=""
-        />
-      ) : (
-        <Label name={message.author.name} />
-      )}
+      <LoadImg
+        picture={message.author.picture}
+        style={styles.pictureAuthor}
+        name={message.author.name}
+      />
       <div className={styles.messageContent}>
         <span className={styles.messageAuthor}>
           {`${message.author.name} `}

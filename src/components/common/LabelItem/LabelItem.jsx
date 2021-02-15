@@ -1,24 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
+import LoadImg from '../LoadImg/LoadImg';
+
 import styles from './LabelItem.module.css';
-import Label from '../Label/Label';
 
 const LabelItem = ({ name, picture }) => {
-  const [isCompleted, setIsCompleted] = useState(true);
-
   return (
     <li className={styles.channelItem}>
-      {picture && isCompleted ? (
-        <img
-          className={styles.pictureProfile}
-          onError={() => setIsCompleted(false)}
-          src={picture}
-          alt={name}
-        />
-      ) : (
-        <Label name={name} />
-      )}
+      <LoadImg style={styles.pictureProfile} picture={picture} name={name} />
       {name}
     </li>
   );
